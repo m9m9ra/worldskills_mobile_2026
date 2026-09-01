@@ -1,29 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matule/home_screen.dart';
+import 'package:matule/core/router/router_config_go.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-
-  final GoRouter _goRouter = GoRouter(
-    initialLocation: '/',
-    routes: [
-      StatefulShellRoute.indexedStack(branches: [StatefulShellBranch(routes: [])]),
-      GoRoute(
-        path: '/',
-        builder: (context, state) =>
-            MyHomePage(title: 'Flutter Demo Home Page'),
-        routes: [
-          GoRoute(path: '/home', builder: (context, state) => HomeScreen()),
-        ],
-      ),
-    ],
-  );
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -34,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      routerConfig: _goRouter,
+      routerConfig: RouterConfigGo.config,
     );
   }
 }
