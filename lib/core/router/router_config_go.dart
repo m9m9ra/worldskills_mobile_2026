@@ -1,6 +1,5 @@
 import 'package:go_router/go_router.dart';
 import 'package:matule/home_screen.dart';
-import 'package:matule/main.dart';
 
 class RouterConfigGo {
   RouterConfigGo._();
@@ -15,8 +14,7 @@ class RouterConfigGo {
       ),
       GoRoute(
         path: '/',
-        builder: (context, state) =>
-            MyHomePage(title: 'Flutter Demo Home Page'),
+        builder: (context, state) => HomeScreen(),
         routes: [
           GoRoute(path: '/home', builder: (context, state) => HomeScreen()),
         ],
