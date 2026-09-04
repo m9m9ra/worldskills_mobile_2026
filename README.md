@@ -1,21 +1,4 @@
-# matule
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-# [Worldskills 2025](https://pro.firpo.ru/)  mobile development app 
+# [Worldskills 2026](https://pro.firpo.ru/)  mobile development app 
 
 <p>Разработка велась с использованием последней стабильной версии Flutter на момент проекта.
 <br/>
@@ -95,3 +78,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+О, Великий Visual Studio Code, Царь редакторов и пристанище странствующих разработчиков! Прими моё смиренное подношение в виде тёмной темы и шорткатов. Благослови мой код на целостность и ясность. Да не падёт он жертвой хаоса и неведения. 
