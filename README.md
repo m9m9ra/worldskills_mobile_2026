@@ -1,83 +1,145 @@
-# [Worldskills 2026](https://pro.firpo.ru/)  mobile development app 
+<!--
+ _____ ______   ________  _____ ______   ________  ________  ________          ________  _______   ___      ___ 
+|\   _ \  _   \|\  ___  \|\   _ \  _   \|\  ___  \|\   __  \|\   __  \        |\   ___ \|\  ___ \ |\  \    /  /|
+\ \  \\\__\ \  \ \____   \ \  \\\__\ \  \ \____   \ \  \|\  \ \  \|\  \       \ \  \_|\ \ \   __/|\ \  \  /  / /
+ \ \  \\|__| \  \|____|\  \ \  \\|__| \  \|____|\  \ \   _  _\ \   __  \       \ \  \ \\ \ \  \_|/_\ \  \/  / / 
+  \ \  \    \ \  \  __\_\  \ \  \    \ \  \  __\_\  \ \  \\  \\ \  \ \  \       \ \  \_\\ \ \  \_|\ \ \    / /  
+   \ \__\    \ \__\|\_______\ \__\    \ \__\|\_______\ \__\\ _\\ \__\ \__\       \ \_______\ \_______\ \__/ /   
+    \|__|     \|__|\|_______|\|__|     \|__|\|_______|\|__|\|__|\|__|\|__|        \|_______|\|_______|\|__|/    
+                                                                                                                
+--->
 
-<p>Разработка велась с использованием последней стабильной версии Flutter на момент проекта.
-<br/>
-Этот проект представляет собой шаблон чемпионатного приложения, использующий метод управления состоянием Mobx в Flutter. Он включает операции CRUD (Создание, Чтение, Обновление, Удаление) для пользователей и аутентификацию, что делает его реалистичным примером для реальных сценариев. Чтобы продемонстрировать, что нативные приложения можно создавать с помощью Flutter, в пользовательском интерфейсе проекта использовались компоненты, максимально приближенные к нативным, вместо стандартных компонентов Flutter.
-<br/>
-Разработка велась с использованием последней стабильной версии Flutter на момент проекта..</p>
+# [Worldskills 2026](https://pro.firpo.ru/)  mobile app development 
 
-![Worldskills 2025](https://github.com/m9m9ra/flutter_championship_2025/blob/main/publication/preview.png)
+[![](./assets/publication/matule_preview.png)](https://m9m9ra.github.io)
 
-## Getting Started
+
+<!-- ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
+![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white) -->
+<!-- 
+![App Store](https://img.shields.io/badge/App_Store-0D96F6?style=for-the-badge&logo=app-store&logoColor=white)
+![Google Pay](https://img.shields.io/badge/GooglePay-%233780F1.svg?style=for-the-badge&logo=Google-Pay&logoColor=white) -->
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+<!-- <a href="">
+<img height="36px" src="./assets/publication/test_flight_badge.png"/>
+</a>
+</br> -->
+
+## О проекте
+
+**Matule 2026** — Требования компетенции (ТК) «Разработка мобильных приложений»
+определяют знания, умения, навыки и трудовые функции, которые лежат в
+основе наиболее актуальных требований работодателей отрасли.
+
+## Установка
+
+### Требования
+- Flutter SDK: ^3.8.1 или выше (до 4.0.0)
+- iOS: 17.0+
+- Android: 13.0+
+- Подключение к интернету для начальной загрузки (опционально).
+
+### Быстрая установка
+1. Склонируйте репозиторий:
+   ```bash
+   git clone https://github.com/m9m9ra/worldskills_mobile_2026.git
+   cd worldskills_mobile_2026
+   ```
+2. Установите зависимости:
+   ```bash
+   flutter pub get
+   ```
+3. Запустите приложение:
+   ```bash
+   flutter run
+   ```
+
+## Разработка
+
+### Настройка окружения
+- Установите Flutter и настройте эмуляторы или подключите устройство.
+- Убедитесь, что у вас есть Xcode (для iOS) и Android SDK (для Android).
+
+### Команды
+- **Запуск разработчика:**
+  ```bash
+  flutter pub run build_runner watch
+  ```
+- **Сборка:**
+  ```bash
+  flutter pub run build_runner build
+  ```
+
+## Структура папок проекта 
+
+```bash
+/lib
+│
+├── core
+│   ├── brand               // Цветовая палитра, константы
+│   ├── helpers             // Вспомогательные функции и утилиты
+│   ├── router              // Схема навигации
+│   └── services            // Сервисы, такие как метрика, уведомления, реклама
+│
+└── layers                  // Весь бизнес и презентационный слой размещен здесь
+    ├── data
+    │   ├── local
+    │   │   └── sqflite_source.dart
+    │   └── remote
+    │       └── api.dart
+    │
+    ├── domain
+    │   ├── entities
+    │   │   ├── user.dart
+    │   │   ├── activity.dart
+    │   │   └── ... (другие бизнес-объекты)
+    │   ├── repositories (интерфейсы репозиториев)
+    │   │   ├── user_repository.dart
+    │   │   ├── activity_repository.dart
+    │   │   └── ...
+    │   └── usecases
+    │       ├── activity_usecase.dart
+    │       ├── activity_usecase.g.dart
+    │       └── ... (другие use case)
+    │
+    └── presentation
+        ├── screens
+        │   ├── auth
+        │   ├── main
+        │   │   ├── activity_screen
+        │   │   │   ├── tab_bar
+        │   │   │   ├── tabs
+        │   │   │   └── view
+        │   │   ├── details_screen
+        │   │   ├── home_screen
+        │   │   ├── profile_screen
+        │   │   └── ... (дополнительные экраны)
+        │   ├── onboarding
+        │   └── other
+        │
+        └── shared
+            ├── store
+            │   ├── modules
+            │   └── root_store.dart
+            └── ui (компоненты общего назначения)
+       
+└── main.dart
 
 ```
-flutter pub get
+
+### Ошибка подписи
+Если есть проблемы с подписью:
+```bash
+flutter config --clear-ios-signing-cert
 ```
+Затем настройте подпись в VS Code (Settings -> Flutter Guidelines).
 
+## Сообщество
+- **Issues**: [Открыть проблему](https://github.com/m9m9ra/worldskills_mobile_2026/issues)
+- **Обсуждения**: [GitHub Discussions](https://github.com/m9m9ra/worldskills_mobile_2026/discussions)
+- **Контакт**: [m9m9ra.dev](https://m9m9ra.github.io)
 
-```
-flutter pub run build_ranner build
-```
-
-```
-chose ios / android
-```
-
-### API Integration
-<p>A Rest API is used for user operations, and the API code is not included in this repository. You can develop API endpoints according to the UserModel class in the project to make it suitable for use. You need to update the BASE_URL value in the '.env' file content to match your API structure. You can find the naming used for CRUD and authentication endpoints in the UserService class, and you may need to revise it according to your API structure.</p>
-
-#
-### Supabase Integration
-<p>The project uses Storage for uploading images and accessing them via URL, Extensions and Firestore Database for email infrastructure and Functions for triggering email sending. Therefore, you will need a supabase project.</p>
-
-<!-- #
-### Firebase Trigger Email Extension Integration
-<p>For email verification, a verification code is sent to the email address provided by the user. The Firebase Trigger Email extension is used for email infrastructure. You need to activate this extension via the Firebase console. Besides verification code sending, the email infrastructure is used for different scenarios as well. Email sending is triggered by Firebase Cloud Functions.</p> -->
-
-<!-- #
-### Firebase Cloud Functions Integration
-<p>The project already includes the functions folder and firebase.json file to be added with Cloud Functions. If you specify that the functions/index.js file should be overwritten while integrating cloud functions, you will delete the cloud functions that you need to deploy for the email infrastructure from the file. You can skip the overwrite step with the "No" option, or if it is overwritten, you can copy and deploy the functions again from the relevant file in this Github repo.</p> -->
-
-## Screenshoots
-###### Hover the mouse cursor over the images for explanations.
-<!-- <img src="https://github.com/m9m9ra/ws-redi-mobile/blob/main/assets/Home.png" title="Login Screen" height="500">
-<img src="https://github.com/m9m9ra/ws-redi-mobile/blob/main/assets/Onboarding%201.png" title="Forgot Password Screen" height="500">
-<img src="https://github.com/m9m9ra/ws-redi-mobile/blob/main/assets/Splash.png" title="Register Screen" height="500"> -->
-
-
-<!-- <img src="https://github.com/enescerrahoglu/template_app_bloc/assets/76053138/4af3da17-a98c-409b-a5d2-ab70384948c6" title="Verificaton Code Screen" height="500">
-<img src="https://github.com/enescerrahoglu/template_app_bloc/assets/76053138/78905109-f0b5-489c-a07d-77a46c16a7a9" title="Verification code and welcome emails" height="500"> -->
-<!-- <img src="https://github.com/enescerrahoglu/template_app_bloc/assets/76053138/c290e25a-38af-405f-a2a8-cea9cd27d8b5" title="Update Profile Screen" height="500">
-<img src="https://github.com/enescerrahoglu/template_app_bloc/assets/76053138/681425e4-9848-4892-9b4a-eeac1a9f1b44" title="View/Edit Profile Photo Screen" height="500">
-<img src="https://github.com/enescerrahoglu/template_app_bloc/assets/76053138/74a98cd5-9317-4889-b168-6d4be3086ce6" title="Home Screen" height="500">
-<img src="https://github.com/enescerrahoglu/template_app_bloc/assets/76053138/4f0c7aed-be1e-4239-9893-6b8632367544" title="Settings Screen" height="500">
-<img src="https://github.com/enescerrahoglu/template_app_bloc/assets/76053138/dd0145be-f13c-4043-a096-5d63132750a9" title="Change app theme" height="500">
-<img src="https://github.com/enescerrahoglu/template_app_bloc/assets/76053138/40b2e5e8-84c4-424f-a94f-67bc9ad8d599" title="Change app language" height="500"> -->
-
-<!-- ## Problems you may encounter
-<p>To prevent [...lowerCamelCase identifier] problems caused by the easy_localization package, it will be sufficient to add the [constant_identifier_names: false] definition under the [rules:] statement in the analysis_options.yaml file in the project directory.</p>
-
-![problem_1](https://github.com/enescerrahoglu/template_app_bloc/assets/76053138/d1ca7d89-4067-432d-8c01-7c0a3b72f232) -->
-
-## Things to know
-<p>After adding new string definitions to the [language-code].json (such as en.json, tr.json) file, run the following codes in the terminal one by one so that the easy_localization structure can recognize these changes:</p>
-
-<!-- ```
-dart run easy_localization:generate --source-dir assets/translations
-``` -->
-
-## Documentation
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-
-О, Великий Visual Studio Code, Царь редакторов и пристанище странствующих разработчиков! Прими моё смиренное подношение в виде тёмной темы и шорткатов. Благослови мой код на целостность и ясность. Да не падёт он жертвой хаоса и неведения. 
+---
+Copyright (c) 2026 M9M9Ra
