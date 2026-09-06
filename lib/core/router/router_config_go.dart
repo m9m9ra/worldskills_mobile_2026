@@ -9,9 +9,9 @@ class RouterConfigGo {
   static GoRouter get config => GoRouter(
     initialLocation: '/',
     routes: [
-      StatefulShellRoute.indexedStack(
-        branches: [StatefulShellBranch(routes: [])],
-      ),
+      // StatefulShellRoute.indexedStack(
+      //   branches: [StatefulShellBranch(routes: [])],
+      // ),
       GoRoute(
         path: '/',
         builder: (context, state) => HomeScreen(),
