@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:matule/home_screen.dart';
+import 'package:matule/layers/presentation/home_screen.dart';
 
 class RouterConfigGo {
   RouterConfigGo._();

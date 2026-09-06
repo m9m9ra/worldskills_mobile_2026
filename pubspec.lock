@@ -144,6 +144,20 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.13.0"
+  matule_api:
+    dependency: "direct main"
+    description:
+      path: "packages/matule_api"
+      relative: true
+    source: path
+    version: "0.0.1"
+  matule_uikit:
+    dependency: "direct main"
+    description:
+      path: "packages/matule_uikit"
+      relative: true
+    source: path
+    version: "0.0.1"
   meta:
     dependency: transitive
     description:
@@ -230,5 +244,5 @@ packages:
     source: hosted
     version: "15.3.0"
 sdks:
-  dart: ">=3.11.0-0 <4.0.0"
+  dart: ">=3.13.2 <4.0.0"
   flutter: ">=3.38.0"
