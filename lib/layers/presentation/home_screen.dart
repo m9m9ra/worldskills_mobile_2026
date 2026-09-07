@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:matule/core/config/brand_colors.dart';
 import 'package:matule/core/config/brand_text_style_dark.dart';
@@ -16,8 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: ListView(
         children: [
           Padding(
             padding: const EdgeInsets.only(
@@ -29,6 +29,29 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Text(
               'Добро пожаловать!',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight(600)),
+            ),
+          ),
+          Container(
+            width: double.maxFinite,
+            height: 500,
+            color: Colors.white,
+            child: GridView.count(
+              crossAxisCount: 3,
+              children: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 11].map((e) {
+                if (e == 10) {
+                  return SizedBox();
+                }
+                if (e == 11) {
+                  return IconButton.filled(
+                    onPressed: () {},
+                    icon: Icon(Icons.delete),
+                  );
+                }
+                return CupertinoButton(
+                  child: Text(e.toString()),
+                  onPressed: () {},
+                );
+              }).toList(),
             ),
           ),
           Padding(
