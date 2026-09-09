@@ -1,0 +1,1 @@
+enum UikitButtonState { tetriary, secondary, inactive, primary }

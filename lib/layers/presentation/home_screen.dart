@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:matule/core/config/brand_colors.dart';
-import 'package:matule/core/config/brand_text_style_dark.dart';
-import 'package:matule/core/config/brand_text_style_light.dart';
+import 'package:matule/core/config/uikit/login/uikit_button_login_yandex.dart';
+import 'package:matule/core/config/uikit/menu_category/uikit_menu_category.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,12 +12,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int? chipSelectedId;
+  int chipSelectedId = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
+      backgroundColor: Colors.white,
+      body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.only(
@@ -31,28 +32,22 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight(600)),
             ),
           ),
-          Container(
-            width: double.maxFinite,
-            height: 500,
-            color: Colors.white,
-            child: GridView.count(
-              crossAxisCount: 3,
-              children: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 11].map((e) {
-                if (e == 10) {
-                  return SizedBox();
-                }
-                if (e == 11) {
-                  return IconButton.filled(
-                    onPressed: () {},
-                    icon: Icon(Icons.delete),
-                  );
-                }
-                return CupertinoButton(
-                  child: Text(e.toString()),
-                  onPressed: () {},
-                );
-              }).toList(),
-            ),
+          UiKitButtonLoginYadex(
+            onPressed: () {
+              debugPrint('vk');
+            },
+          ),
+          Divider(
+            height: 20.0,
+          ),
+          UiKitMenuCategory(
+            category: ['All', 'Популярные', 'Не популярные', 'Популярные'],
+            currentIndex: chipSelectedId,
+            onPressed: (int item) {
+              setState(() {
+                chipSelectedId = item;
+              });
+            },
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -61,40 +56,23 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(fontSize: 15.0),
             ),
           ),
-          Container(
-            padding: const EdgeInsetsGeometry.symmetric(horizontal: 0),
-            height: 100,
-            width: double.maxFinite,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                ...[0, 1, 2, 3, 4].map((e) {
-                  return Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: GestureDetector(
-                      onTap: () => setState(() {
-                        chipSelectedId = e;
-                      }),
-                      child: Chip(
-                        label: Text(
-                          'data',
-                          style: () {
-                            if (chipSelectedId == e) {
-                              return BrandTextStyleDark.textRegular;
-                            }
-                            return BrandTextStyleLight.textRegular;
-                          }(),
-                        ),
-                        padding: EdgeInsets.only(left: 20, right: 20),
-                        backgroundColor: chipSelectedId == e
-                            ? BrandColors.accent
-                            : BrandColors.white,
-                      ),
-                    ),
-                  );
-                }),
-              ],
-            ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: BrandColors.accent,
+        backgroundColor: BrandColors.white,
+        elevation: 1.0,
+        onTap: (int index) {
+          debugPrint('BottomNavigationBar: $index');
+        },
+        items: [
+          BottomNavigationBarItem(
+            label: 'Home',
+            icon: Icon(CupertinoIcons.home),
+          ),
+          BottomNavigationBarItem(
+            label: 'Profile',
+            icon: Icon(CupertinoIcons.person_crop_circle),
           ),
         ],
       ),

@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
+  import 'package:flutter/cupertino.dart';
 import 'package:matule/core/config/brand_colors.dart';
 import 'package:matule/core/config/uikit/uikit_button_state.dart';
 
 // ignore: must_be_immutable
-class UiKitButtonBig extends StatelessWidget {
-  UiKitButtonBig({
+class UiKitButtonSmall extends StatelessWidget{
+  UiKitButtonSmall({
     super.key,
     this.height,
     this.width,
@@ -16,8 +16,8 @@ class UiKitButtonBig extends StatelessWidget {
   String text = '';
   UikitButtonState? uikitButtonState = UikitButtonState.primary;
   Function onPressed = () {};
-  double? width = double.maxFinite;
-  double? height = 56.0;
+  double? width = 96.0;
+  double? height = 40.0;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class UiKitButtonBig extends StatelessWidget {
       ),
       child: CupertinoButton(
         borderRadius: BorderRadius.circular(10.0),
-        padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 10),
+        padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
         color: () {
           switch (uikitButtonState!.name) {
             case 'primary':
@@ -65,7 +65,7 @@ class UiKitButtonBig extends StatelessWidget {
           softWrap: true,
           style: TextStyle(
             fontWeight: FontWeight(600),
-            fontSize: 17.0,
+            fontSize: 14.0,
             color: () {
               switch (uikitButtonState!.name) {
                 case 'primary':
