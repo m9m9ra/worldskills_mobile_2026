@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:matule/core/config/brand_colors.dart';
+import 'package:matule/core/config/uikit/card/uikit_card_base.dart';
 import 'package:matule/core/config/uikit/login/uikit_button_login_yandex.dart';
 import 'package:matule/core/config/uikit/menu_category/uikit_menu_category.dart';
+import 'package:matule/core/config/uikit/uikit_button_state.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,7 +20,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
+      body: ListView(
+        padding: EdgeInsets.symmetric(horizontal: 12.0),
         children: [
           Padding(
             padding: const EdgeInsets.only(
@@ -37,10 +40,33 @@ class _HomeScreenState extends State<HomeScreen> {
               debugPrint('vk');
             },
           ),
-          
-          Divider(
-            height: 20.0,
+          UiKitCard(child: Column(), onCardTap: () {}),
+          UiKitCard.primary(
+            onCardTap: () {},
+            onPrimaryButtonTap: () {},
+            title: 'Рубашка Воскресенье для машинного вязания',
+            subTitle: 'Мужская одежда',
+            price: 300,
+            buttonText: 'Добавить',
+            uikitButtonState: UikitButtonState.secondary,
           ),
+          UiKitCard.cart(
+            onCardTap: () {},
+            title: 'Рубашка Воскресенье для машинного вязания',
+            price: 300,
+            count: 10,
+            onCloseTap: () {},
+            onPlusTap: () {},
+            onMinusTap: () {},
+          ),
+          UiKitCard.project(
+            title: 'Мой первый проект',
+            subTitle: 'Прошло 2 дня',
+            onCardTap: () {},
+            buttonText: 'Открыть',
+            onPrimaryButtonTap: () {},
+          ),
+          Divider(height: 20.0),
           UiKitMenuCategory(
             category: ['All', 'Популярные', 'Не популярные', 'Популярные'],
             currentIndex: chipSelectedId,
