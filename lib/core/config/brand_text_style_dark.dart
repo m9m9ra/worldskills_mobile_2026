@@ -2,6 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:matule/core/config/brand_colors.dart';
 
 class BrandTextStyleDark {
+  BrandTextStyleDark._();
+
   static TextStyle get title1SemiBold => TextStyle(
     fontWeight: FontWeight(600),
     color: BrandColors.white,
