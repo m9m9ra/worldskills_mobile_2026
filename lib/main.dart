@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:matule/core/router/router_config_go.dart';
 
+/// v0.0.1+1
 void main() {
   runApp(App());
 }

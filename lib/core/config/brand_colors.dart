@@ -1,6 +1,8 @@
 import 'package:flutter/painting.dart';
 
 class BrandColors {
+  BrandColors._();
+  
   static Color get accent => Color.fromRGBO(32, 116, 242, 1);
 
   static Color get accentInactive => Color.fromRGBO(197, 210, 255, 1);
