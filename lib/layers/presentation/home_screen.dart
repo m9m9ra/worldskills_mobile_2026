@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:matule/core/config/brand_colors.dart';
+import 'package:matule/core/config/uikit/bottom_sheet/uikit_bottom_sheet.dart';
 import 'package:matule/core/config/uikit/card/uikit_card_base.dart';
+import 'package:matule/core/config/uikit/counter/uikit_counter.dart';
 import 'package:matule/core/config/uikit/login/uikit_button_login_yandex.dart';
 import 'package:matule/core/config/uikit/menu_category/uikit_menu_category.dart';
+import 'package:matule/core/config/uikit/switch/uikit_switch.dart';
 import 'package:matule/core/config/uikit/uikit_button_state.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,12 +18,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int chipSelectedId = 0;
+  bool switchState = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
+        shrinkWrap: true,
         padding: EdgeInsets.symmetric(horizontal: 12.0),
         children: [
           Padding(
@@ -35,9 +40,27 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight(600)),
             ),
           ),
+          Row(
+            children: [UiKitCounter(onMinusTap: () {}, onPlusTap: () {})],
+          ),
+          UiKitSwitch(
+            value: switchState,
+            onChange: (bool value) {
+              setState(() {
+                switchState = value;
+              });
+            },
+          ),
           UiKitButtonLoginYadex(
-            onPressed: () {
-              debugPrint('vk');
+            onPressed: () => {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                builder: (context) {
+                  return UiKitBottomSheet(children: []);
+                },
+              ),
             },
           ),
           UiKitCard(child: Column(), onCardTap: () {}),
