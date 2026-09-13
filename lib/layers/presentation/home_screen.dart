@@ -4,8 +4,10 @@ import 'package:matule/core/config/brand_colors.dart';
 import 'package:matule/core/config/uikit/bottom_sheet/uikit_bottom_sheet.dart';
 import 'package:matule/core/config/uikit/card/uikit_card_base.dart';
 import 'package:matule/core/config/uikit/counter/uikit_counter.dart';
+import 'package:matule/core/config/uikit/input/uikit_input.dart';
 import 'package:matule/core/config/uikit/login/uikit_button_login_yandex.dart';
 import 'package:matule/core/config/uikit/menu_category/uikit_menu_category.dart';
+import 'package:matule/core/config/uikit/search/uikit_search.dart';
 import 'package:matule/core/config/uikit/switch/uikit_switch.dart';
 import 'package:matule/core/config/uikit/uikit_button_state.dart';
 
@@ -40,6 +42,11 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight(600)),
             ),
           ),
+          UiKitSearchInput(),
+          SizedBox(height: 10),
+          UiKitInput(isPassword: false),
+
+          SizedBox(height: 10),
           Row(
             children: [UiKitCounter(onMinusTap: () {}, onPlusTap: () {})],
           ),
