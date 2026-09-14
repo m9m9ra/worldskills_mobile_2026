@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:matule/core/config/brand_colors.dart';
+import 'package:matule/core/config/brand_text_style_light.dart';
 import 'package:matule/core/config/uikit/bottom_sheet/uikit_bottom_sheet.dart';
 import 'package:matule/core/config/uikit/card/uikit_card_base.dart';
 import 'package:matule/core/config/uikit/counter/uikit_counter.dart';
@@ -8,6 +9,7 @@ import 'package:matule/core/config/uikit/input/uikit_input.dart';
 import 'package:matule/core/config/uikit/login/uikit_button_login_yandex.dart';
 import 'package:matule/core/config/uikit/menu_category/uikit_menu_category.dart';
 import 'package:matule/core/config/uikit/search/uikit_search.dart';
+import 'package:matule/core/config/uikit/select/uikit_select.dart';
 import 'package:matule/core/config/uikit/switch/uikit_switch.dart';
 import 'package:matule/core/config/uikit/uikit_button_state.dart';
 
@@ -21,6 +23,33 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int chipSelectedId = 0;
   bool switchState = false;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(microseconds: 200)).then((onValue) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        snackBarAnimationStyle: AnimationStyle(curve: Curves.easeOut),
+        SnackBar(
+          // margin: EdgeInsets.all(10),
+          backgroundColor: BrandColors.white,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadiusGeometry.circular(8.0)
+          ),
+          content: Container(
+            width: 375, 
+            height: 80.0,
+            alignment: Alignment.topLeft,
+            decoration: BoxDecoration(
+              color: BrandColors.white
+            ),
+            child: Text('Произошла ошибка\nНу вот опять', style: BrandTextStyleLight.title2ExtraBold,),
+            ),
+        ),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +71,15 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight(600)),
             ),
           ),
+          SizedBox(height: 10),
+          UiKitSelect(
+            onSelected: (String p1) {},
+            menuItems: [
+              UiKitSelectItem(label: 'asd', value: 'asd'),
+              UiKitSelectItem(label: 'asd', value: 'asd'),
+            ],
+          ),
+          SizedBox(height: 10),
           UiKitSearchInput(),
           SizedBox(height: 10),
           UiKitInput(isPassword: false),
