@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:matule/core/config/brand_colors.dart';
+import 'package:matule_uikit/widgets/colors/brand_colors.dart';
 
 class UiKitSelectItem {
   UiKitSelectItem({required this.label, required this.value});

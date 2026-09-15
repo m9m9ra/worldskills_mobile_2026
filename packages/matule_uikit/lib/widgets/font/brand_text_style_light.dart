@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:matule/core/config/brand_colors.dart';
+import 'package:matule_uikit/widgets/colors/brand_colors.dart';
 
 class BrandTextStyleLight {
   BrandTextStyleLight._();

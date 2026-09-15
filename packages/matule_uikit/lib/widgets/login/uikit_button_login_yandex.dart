@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:matule/core/config/brand_colors.dart';
+import 'package:matule_uikit/widgets/colors/brand_colors.dart';
 
 // ignore: must_be_immutable
-class UiKitButtonLoginVk extends StatelessWidget {
-  UiKitButtonLoginVk({
+class UiKitButtonLoginYadex extends StatelessWidget {
+  UiKitButtonLoginYadex({
     super.key,
     this.height = 60.0,
     this.width = 335.0,
@@ -35,7 +35,7 @@ class UiKitButtonLoginVk extends StatelessWidget {
           children: [
             Icon(Icons.add_ic_call_outlined),
             Text(
-              'Войти с VK',
+              'Войти с Yandex',
               style: TextStyle(
                 color: BrandColors.black,
                 fontWeight: FontWeight(500),

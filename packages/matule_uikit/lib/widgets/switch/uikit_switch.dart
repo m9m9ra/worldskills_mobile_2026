@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:matule/core/config/brand_colors.dart';
+import 'package:matule_uikit/widgets/colors/brand_colors.dart';
 
 // ignore: must_be_immutable
 class UiKitSwitch extends StatelessWidget {

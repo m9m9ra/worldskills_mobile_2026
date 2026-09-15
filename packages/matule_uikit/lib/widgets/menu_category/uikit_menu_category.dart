@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:matule/core/config/uikit/uikit_button_chips.dart';
+import 'package:matule_uikit/widgets/button/uikit_button_chips.dart';
 
 // ignore: must_be_immutable
 class UiKitMenuCategory extends StatelessWidget {

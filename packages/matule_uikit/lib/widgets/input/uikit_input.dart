@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:matule/core/config/brand_colors.dart';
-import 'package:matule/core/config/brand_text_style_light.dart';
+import 'package:matule_uikit/widgets/colors/brand_colors.dart';
+import 'package:matule_uikit/widgets/font/brand_text_style_light.dart';
 
 class UiKitInput extends StatefulWidget {
   const UiKitInput({

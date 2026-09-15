@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:matule/core/config/brand_colors.dart';
-import 'package:matule/core/config/brand_text_style_light.dart';
-import 'package:matule/core/config/uikit/uikit_button_small.dart';
-import 'package:matule/core/config/uikit/uikit_button_state.dart';
+import 'package:matule_uikit/widgets/button/uikit_button_small.dart';
+import 'package:matule_uikit/widgets/button/uikit_button_state.dart';
+import 'package:matule_uikit/widgets/colors/brand_colors.dart';
+import 'package:matule_uikit/widgets/font/brand_text_style_light.dart';
 
 enum _CardVariant { base, primary, cart, project }
 

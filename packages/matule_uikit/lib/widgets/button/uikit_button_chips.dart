@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:matule/core/config/brand_colors.dart';
+import 'package:matule_uikit/widgets/colors/brand_colors.dart';
 
 enum UiKitButtonChipsState { enable, disable }
 
