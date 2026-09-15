@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:matule/layers/presentation/home_screen.dart';
+import 'package:matule/layers/presentation/root_screen/view/root_screen.dart';
 
 class RouterConfigGo {
   RouterConfigGo._();
@@ -7,17 +8,49 @@ class RouterConfigGo {
   static RouterConfigGo get instance => _instance;
 
   static GoRouter get config => GoRouter(
-    initialLocation: '/',
+    initialLocation: '/home',
     routes: [
-      // StatefulShellRoute.indexedStack(
-      //   branches: [StatefulShellBranch(routes: [])],
-      // ),
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) => RootScreen(statefulNavigationShell: navigationShell),
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/home',
+                builder: (context, state) => HomeScreen(),
+                routes: [],
+              ),
+            ],
+          ),
+        ],
+      ),
       GoRoute(
-        path: '/',
+        path: '/signin',
         builder: (context, state) => HomeScreen(),
         routes: [
-          GoRoute(path: '/home', builder: (context, state) => HomeScreen()),
+          GoRoute(
+            path: '/profile',
+            builder: (context, state) => HomeScreen(),
+            routes: [
+              GoRoute(
+                path: '/password',
+                builder: (context, state) => HomeScreen(),
+                routes: [
+                  GoRoute(
+                    path: '/pincode',
+                    builder: (context, state) => HomeScreen(),
+                    routes: [],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ],
+      ),
+      GoRoute(
+        path: '/login',
+        builder: (context, state) => HomeScreen(),
+        routes: [],
       ),
     ],
   );
