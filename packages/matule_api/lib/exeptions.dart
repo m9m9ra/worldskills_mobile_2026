@@ -37,5 +37,5 @@ class ServerException extends ApiException {
 
 /// Ошибка отсутствия авторизации (401)
 class UnauthorizedException extends ApiException {
-  UnauthorizedException([String message = 'Пользователь не авторизован']) : super(message);
+  UnauthorizedException([super.message = 'Пользователь не авторизован']);
 }
