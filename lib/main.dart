@@ -3,6 +3,7 @@ import 'package:matule/core/router/router_config_go.dart';
 
 /// v0.0.1+1
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(App());
 }
 

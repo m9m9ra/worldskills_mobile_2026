@@ -28,26 +28,26 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     // Future.delayed(Duration(microseconds: 200)).then((onValue) {
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     snackBarAnimationStyle: AnimationStyle(curve: Curves.easeOut),
-    //     SnackBar(
-    //       // margin: EdgeInsets.all(10),
-    //       backgroundColor: BrandColors.white,
-    //       behavior: SnackBarBehavior.floating,
-    //       shape: RoundedRectangleBorder(
-    //         borderRadius: BorderRadiusGeometry.circular(8.0)
-    //       ),
-    //       content: Container(
-    //         width: 375,
-    //         height: 80.0,
-    //         alignment: Alignment.topLeft,
-    //         decoration: BoxDecoration(
-    //           color: BrandColors.white
-    //         ),
-    //         child: Text('Произошла ошибка\nНу вот опять', style: BrandTextStyleLight.title2ExtraBold,),
-    //         ),
-    //     ),
-    //   );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   snackBarAnimationStyle: AnimationStyle(curve: Curves.easeOut),
+      //   SnackBar(
+      //     // margin: EdgeInsets.all(10),
+      //     backgroundColor: BrandColors.white,
+      //     behavior: SnackBarBehavior.floating,
+      //     shape: RoundedRectangleBorder(
+      //       borderRadius: BorderRadiusGeometry.circular(8.0)
+      //     ),
+      //     content: Container(
+      //       width: 375,
+      //       height: 80.0,
+      //       alignment: Alignment.topLeft,
+      //       decoration: BoxDecoration(
+      //         color: BrandColors.white
+      //       ),
+      //       child: Text('Произошла ошибка\nНу вот опять', style: BrandTextStyleLight.title2ExtraBold,),
+      //       ),
+      //   ),
+      // );
     // });
   }
 
