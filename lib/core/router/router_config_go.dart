@@ -24,6 +24,7 @@ class RouterConfigGo {
           ),
         ],
       ),
+      
       GoRoute(
         path: '/signin',
         builder: (context, state) => HomeScreen(),
