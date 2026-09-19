@@ -12,7 +12,7 @@ class ApiClient {
   static ApiClient? _instance;
 
   // Factory constructor that ensures only one instance
-  factory ApiClient(String s, {required String baseUrl}) {
+  factory ApiClient({required String baseUrl}) {
     baseUrl = baseUrl;
     _instance ??= ApiClient._();
     return _instance!;

@@ -42,6 +42,21 @@ class User {
     datebirthday: json['datebirthday'],
     gender: json['gender'],
   );
+
+  Map<String, dynamic> toMap() => {
+    'id': id,
+    'collectionId': collectionId,
+    'collectionName': collectionName,
+    'created': created,
+    'updated': updated,
+    'firstname': firstname,
+    'lastname': lastname,
+    'secondname': secondname,
+    'emailVisibility': emailVisibility,
+    'verified': verified,
+    'datebirthday': datebirthday,
+    'gender': gender,
+  };
 }
 
 class ResponseAuth {

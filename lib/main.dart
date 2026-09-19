@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:matule/core/router/router_config_go.dart';
+import 'package:matule/layers/data/datasource/local/sqflite_client.dart';
+import 'package:matule_uikit/widgets/colors/brand_colors.dart';
 
 /// v0.0.1+1
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SqfliteClient().initDatabase();
   runApp(App());
 }
 
@@ -17,7 +20,7 @@ class App extends StatelessWidget {
       title: 'Matule 2026',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: BrandColors.accent),
       ),
       routerConfig: RouterConfigGo.config,
     );

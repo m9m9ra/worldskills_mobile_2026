@@ -1,7 +1,14 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:matule/layers/presentation/home_screen.dart';
-import 'package:matule/layers/presentation/root_screen/view/root_screen.dart';
+import 'package:matule/layers/domain/usecases/auth_usecase.dart';
+import 'package:matule/layers/presentation/screens/error_screen.dart/error_screen.dart';
+import 'package:matule/layers/presentation/screens/home_screen.dart';
+import 'package:matule/layers/presentation/screens/product_screen.dart';
+import 'package:matule/layers/presentation/screens/profile_screen.dart';
+import 'package:matule/layers/presentation/screens/project_screen.dart';
+import 'package:matule/layers/presentation/screens/root_screen/view/root_screen.dart';
+import 'package:matule_api/models.dart';
 import 'package:matule_uikit/widgets/colors/brand_colors.dart';
 import 'package:matule_uikit/widgets/font/brand_text_style_light.dart';
 
@@ -10,13 +17,30 @@ class RouterConfigGo {
   static final RouterConfigGo _instance = RouterConfigGo._();
   static RouterConfigGo get instance => _instance;
 
+  static final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
+
   static GoRouter get config => GoRouter(
-    initialLocation: '/home',
+    initialLocation: kDebugMode ? '/profile' : '/home',
     redirectLimit: 8,
-    redirect: (context, state) {
+    navigatorKey: rootNavigatorKey,
+    redirect: (context, state) async {
+      AuthUsecase authUsecase = AuthUsecase();
+      User? user = await authUsecase.isAuth();
+      debugPrint(user.toString());
+      if (user != null) {
+        return '/pincode';
+      }
+      // return '/login';
       return null;
     },
     onException: (context, state, router) {
+      final currentContext = rootNavigatorKey.currentContext;
+
+      if (currentContext == null) {
+        router.push('/error');
+        return;
+      }
+
       ScaffoldMessenger.of(context).showSnackBar(
         snackBarAnimationStyle: AnimationStyle(curve: Curves.easeOut),
         SnackBar(
@@ -56,8 +80,26 @@ class RouterConfigGo {
           StatefulShellBranch(
             routes: [
               GoRoute(
+                path: '/product',
+                builder: (context, state) => ProductScreen(),
+                routes: [],
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/project',
+                builder: (context, state) => ProjectScreen(),
+                routes: [],
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
                 path: '/profile',
-                builder: (context, state) => HomeScreen(),
+                builder: (context, state) => ProfileScreen(),
                 routes: [],
               ),
             ],
@@ -66,21 +108,27 @@ class RouterConfigGo {
       ),
 
       GoRoute(
-        path: '/signin',
+        path: '/login',
         builder: (context, state) => HomeScreen(),
         routes: [
           GoRoute(
-            path: '/profile',
+            path: '/signin',
             builder: (context, state) => HomeScreen(),
             routes: [
               GoRoute(
-                path: '/password',
+                path: '/profile',
                 builder: (context, state) => HomeScreen(),
                 routes: [
                   GoRoute(
-                    path: '/pincode',
+                    path: '/password',
                     builder: (context, state) => HomeScreen(),
-                    routes: [],
+                    routes: [
+                      GoRoute(
+                        path: '/pincode_create',
+                        builder: (context, state) => HomeScreen(),
+                        routes: [],
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -88,11 +136,8 @@ class RouterConfigGo {
           ),
         ],
       ),
-      GoRoute(
-        path: '/login',
-        builder: (context, state) => HomeScreen(),
-        routes: [],
-      ),
+      GoRoute(path: '/pincode', builder: (context, state) => HomeScreen()),
+      GoRoute(path: '/error', builder: (context, state) => ErrorScreen())
     ],
   );
 }
