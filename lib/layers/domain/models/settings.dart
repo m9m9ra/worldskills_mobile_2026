@@ -19,7 +19,7 @@ class Settings extends SettingsModel {
   });
 
   String uuid;
-  int? code;
+  String? code;
   String token;
   String userid;
   bool notification;

@@ -1,7 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:matule/layers/domain/models/settings.dart';
+import 'package:matule/layers/domain/provider/settings_provider.dart';
 import 'package:matule/layers/domain/usecases/auth_usecase.dart';
+import 'package:matule/layers/presentation/screens/auth/login_screen.dart';
+import 'package:matule/layers/presentation/screens/auth/pincode_create_screen.dart';
+import 'package:matule/layers/presentation/screens/auth/pincode_screen.dart';
 import 'package:matule/layers/presentation/screens/error_screen.dart/error_screen.dart';
 import 'package:matule/layers/presentation/screens/home_screen.dart';
 import 'package:matule/layers/presentation/screens/product_screen.dart';
@@ -17,20 +22,29 @@ class RouterConfigGo {
   static final RouterConfigGo _instance = RouterConfigGo._();
   static RouterConfigGo get instance => _instance;
 
-  static final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> rootNavigatorKey =
+      GlobalKey<NavigatorState>();
+  static bool isInit = false;
 
   static GoRouter get config => GoRouter(
-    initialLocation: kDebugMode ? '/profile' : '/home',
-    redirectLimit: 8,
+    initialLocation: kDebugMode ? '/login' : '/home',
+    redirectLimit: 3,
     navigatorKey: rootNavigatorKey,
     redirect: (context, state) async {
-      AuthUsecase authUsecase = AuthUsecase();
-      User? user = await authUsecase.isAuth();
-      debugPrint(user.toString());
-      if (user != null) {
-        return '/pincode';
+      if (!isInit) {
+        isInit = true;
+        AuthUsecase authUsecase = AuthUsecase();
+        User? user = await authUsecase.isAuth();
+        if (user != null) {
+          Settings settings = await SettingsProvider().getSettings();
+          debugPrint(settings.toMap().toString());
+          if (settings.code == null) {
+            return '/pincode_create';
+          }
+          return '/pincode';
+        }
+        return '/login';
       }
-      // return '/login';
       return null;
     },
     onException: (context, state, router) {
@@ -109,7 +123,7 @@ class RouterConfigGo {
 
       GoRoute(
         path: '/login',
-        builder: (context, state) => HomeScreen(),
+        builder: (context, state) => LoginScreen(),
         routes: [
           GoRoute(
             path: '/signin',
@@ -125,7 +139,7 @@ class RouterConfigGo {
                     routes: [
                       GoRoute(
                         path: '/pincode_create',
-                        builder: (context, state) => HomeScreen(),
+                        builder: (context, state) => PincodeCreateScreen(),
                         routes: [],
                       ),
                     ],
@@ -136,8 +150,21 @@ class RouterConfigGo {
           ),
         ],
       ),
-      GoRoute(path: '/pincode', builder: (context, state) => HomeScreen()),
-      GoRoute(path: '/error', builder: (context, state) => ErrorScreen())
+      GoRoute(
+        path: '/pincode',
+        builder: (context, state) => PincodeScreen(),
+        routes: [],
+      ),
+      GoRoute(
+        path: '/pincode_create',
+        builder: (context, state) => PincodeCreateScreen(),
+        routes: [],
+      ),
+      GoRoute(
+        path: '/error',
+        builder: (context, state) => ErrorScreen(),
+        routes: [],
+      ),
     ],
   );
 }

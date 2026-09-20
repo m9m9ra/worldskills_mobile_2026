@@ -33,7 +33,11 @@ class UiKitButtonLoginYadex extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           spacing: 16.0,
           children: [
-            Icon(Icons.add_ic_call_outlined),
+            Image(
+              height: 32.0,
+              width: 32.0,
+              image: AssetImage('assets/yandex.png', package: 'matule_uikit'),
+            ),
             Text(
               'Войти с Yandex',
               style: TextStyle(
