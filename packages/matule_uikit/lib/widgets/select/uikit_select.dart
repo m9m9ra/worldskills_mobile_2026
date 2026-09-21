@@ -14,11 +14,13 @@ class UiKitSelect extends StatefulWidget {
   UiKitSelect({
     super.key,
     this.hintText = 'placeholder',
+    this.initialSelectionValue,
     required this.onSelected,
     required this.menuItems,
   });
 
   String hintText;
+  String? initialSelectionValue;
   List<UiKitSelectItem> menuItems;
   Function(String) onSelected;
 
@@ -31,7 +33,7 @@ class _UKkitSelectState extends State<UiKitSelect> {
   Widget build(BuildContext context) {
     return DropdownMenu(
       width: double.maxFinite,
-      initialSelection: widget.menuItems.first.value,
+      initialSelection: widget.initialSelectionValue,
       onSelected: (value) {
         widget.onSelected(value ?? '');
       },

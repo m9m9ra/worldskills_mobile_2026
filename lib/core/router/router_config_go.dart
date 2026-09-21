@@ -7,6 +7,7 @@ import 'package:matule/layers/domain/usecases/auth_usecase.dart';
 import 'package:matule/layers/presentation/screens/auth/login_screen.dart';
 import 'package:matule/layers/presentation/screens/auth/pincode_create_screen.dart';
 import 'package:matule/layers/presentation/screens/auth/pincode_screen.dart';
+import 'package:matule/layers/presentation/screens/auth/signin_screen.dart';
 import 'package:matule/layers/presentation/screens/error_screen.dart/error_screen.dart';
 import 'package:matule/layers/presentation/screens/home_screen.dart';
 import 'package:matule/layers/presentation/screens/product_screen.dart';
@@ -27,7 +28,7 @@ class RouterConfigGo {
   static bool isInit = false;
 
   static GoRouter get config => GoRouter(
-    initialLocation: kDebugMode ? '/login' : '/home',
+    initialLocation: kDebugMode ? '/login/signin' : '/login',
     redirectLimit: 3,
     navigatorKey: rootNavigatorKey,
     redirect: (context, state) async {
@@ -78,6 +79,7 @@ class RouterConfigGo {
       );
     },
     routes: [
+      // Internal routring -> after auth
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) =>
             RootScreen(statefulNavigationShell: navigationShell),
@@ -121,13 +123,14 @@ class RouterConfigGo {
         ],
       ),
 
+      // external routring -> non auth user
       GoRoute(
         path: '/login',
         builder: (context, state) => LoginScreen(),
         routes: [
           GoRoute(
             path: '/signin',
-            builder: (context, state) => HomeScreen(),
+            builder: (context, state) => SigninScreen(),
             routes: [
               GoRoute(
                 path: '/profile',
@@ -137,11 +140,6 @@ class RouterConfigGo {
                     path: '/password',
                     builder: (context, state) => HomeScreen(),
                     routes: [
-                      GoRoute(
-                        path: '/pincode_create',
-                        builder: (context, state) => PincodeCreateScreen(),
-                        routes: [],
-                      ),
                     ],
                   ),
                 ],
@@ -150,6 +148,8 @@ class RouterConfigGo {
           ),
         ],
       ),
+      
+      // external shared
       GoRoute(
         path: '/pincode',
         builder: (context, state) => PincodeScreen(),
