@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:matule_uikit/widgets/colors/brand_colors.dart';
 
 // ignore: must_be_immutable
@@ -33,7 +32,13 @@ class UiKitButtonLoginVk extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           spacing: 16.0,
           children: [
-            Icon(Icons.add_ic_call_outlined),
+            // Icon(Icons.add_ic_call_outlined),
+            // Image.asset('assets/vk.png'),
+            Image(
+              height: 32.0,
+              width: 32.0,
+              image: AssetImage('assets/vk.png', 
+              package: 'matule_uikit')),
             Text(
               'Войти с VK',
               style: TextStyle(

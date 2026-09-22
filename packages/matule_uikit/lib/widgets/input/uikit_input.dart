@@ -58,13 +58,13 @@ class _UiKitInputState extends State<UiKitInput> {
       children: [
         // Заголовок поля (если передан)
         if (widget.labelText != null) ...[
-          Text(widget.labelText!, style: BrandTextStyleLight.textRegular),
+          Text(widget.labelText!, style: BrandTextStyleLight.captionRegular),
           const SizedBox(height: 8),
         ],
         TextField(
           controller: _controller,
           onChanged: (value) {
-            // widget.onChanged!(value);
+            widget.onChanged!(value);
           },
           obscureText: widget.isPassword ? _obscureText : false,
           keyboardType: widget.keyboardType,
