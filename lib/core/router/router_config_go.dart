@@ -5,6 +5,7 @@ import 'package:matule/layers/domain/models/settings.dart';
 import 'package:matule/layers/domain/provider/settings_provider.dart';
 import 'package:matule/layers/domain/usecases/auth_usecase.dart';
 import 'package:matule/layers/presentation/screens/auth/login_screen.dart';
+import 'package:matule/layers/presentation/screens/auth/password_screen.dart';
 import 'package:matule/layers/presentation/screens/auth/pincode_create_screen.dart';
 import 'package:matule/layers/presentation/screens/auth/pincode_screen.dart';
 import 'package:matule/layers/presentation/screens/auth/signin_screen.dart';
@@ -28,7 +29,7 @@ class RouterConfigGo {
   static bool isInit = false;
 
   static GoRouter get config => GoRouter(
-    initialLocation: kDebugMode ? '/login/signin' : '/login',
+    initialLocation: kDebugMode ? '/login' : '/login',
     redirectLimit: 3,
     navigatorKey: rootNavigatorKey,
     redirect: (context, state) async {
@@ -133,22 +134,18 @@ class RouterConfigGo {
             builder: (context, state) => SigninScreen(),
             routes: [
               GoRoute(
-                path: '/profile',
-                builder: (context, state) => HomeScreen(),
-                routes: [
-                  GoRoute(
-                    path: '/password',
-                    builder: (context, state) => HomeScreen(),
-                    routes: [
-                    ],
+                path: '/password',
+                builder: (context, state) => PasswordScreen(
+                  extraEmail: state.extra as String
+                  
                   ),
-                ],
+                routes: [],
               ),
             ],
           ),
         ],
       ),
-      
+
       // external shared
       GoRoute(
         path: '/pincode',

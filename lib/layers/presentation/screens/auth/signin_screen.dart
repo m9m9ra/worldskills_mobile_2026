@@ -11,47 +11,39 @@ class SigninScreen extends StatefulWidget {
 }
 
 class _SigninScreenState extends State<SigninScreen> {
-  TextEditingController _emailEditingController = TextEditingController();
+  final TextEditingController _firstNameEditingController =
+      TextEditingController();
+  final TextEditingController _lastNameEditingController =
+      TextEditingController();
+  final TextEditingController _secondNameEditingController =
+      TextEditingController();
+  final TextEditingController _birthDayEditingController =
+      TextEditingController();
+  final TextEditingController _emailEditingController = TextEditingController();
+  List<TextEditingController> get _controllerList => [
+    _firstNameEditingController,
+    _lastNameEditingController,
+    _secondNameEditingController,
+    _birthDayEditingController,
+    _emailEditingController,
+  ];
+
   String _emailValidatingError = '';
-  TextEditingController _passwordEditingController = TextEditingController();
-  String _passwordValidatingError = '';
+  String? gender;
   bool validData = false;
   bool passwordEyeVisible = false;
 
-  void onLogin({required String email, required String password}) {
+  void onSignin({required String email}) {
     // MOCK DATA CHECH
     // example@mail.com
     // 1324534789
     // AuthUsecase().login(email: email, password: password);
-    context.go('/pincode_create');
+    context.go('/login/signin/password', extra: email);
   }
 
   void onValidateData() {
-    final emailRegex = RegExp(r'^[a-z0-9]+@[a-z0-9]+\.[a-z0-9]');
-    if ((_emailEditingController.text.isNotEmpty &&
-            _passwordEditingController.text.isNotEmpty) &&
-        emailRegex.hasMatch(_emailEditingController.text)) {
-      setState(() {
-        _emailValidatingError = '';
-        _passwordValidatingError = '';
-        validData = true;
-      });
-      onLogin(
-        email: _emailEditingController.text,
-        password: _emailEditingController.text,
-      );
-    } else if (_passwordEditingController.text.isEmpty ||
-        _emailEditingController.text.isEmpty) {
-      setState(() {
-        _emailValidatingError = 'Поле не может быть пустым';
-        _passwordValidatingError = 'Поле не может быть пустым';
-        validData = false;
-      });
-    } else {
-      setState(() {
-        _emailValidatingError = 'Некорректный формат';
-        validData = false;
-      });
+    if (validData) {
+      onSignin(email: _emailEditingController.text);
     }
   }
 
@@ -62,48 +54,32 @@ class _SigninScreenState extends State<SigninScreen> {
   @override
   void initState() {
     super.initState();
-
-    _emailEditingController.addListener(() {
-      final emailRegex = RegExp(r'^[a-z0-9]+@[a-z0-9]+\.[a-z0-9]');
-      if (emailRegex.hasMatch(_emailEditingController.text)) {
-        setState(() {
-          _emailValidatingError = '';
+    Map<TextEditingController, bool> controllerFilled = {
+      _firstNameEditingController: false,
+      _lastNameEditingController: false,
+      _secondNameEditingController: false,
+      _birthDayEditingController: false,
+      _emailEditingController: false,
+    };
+    _controllerList.forEach((TextEditingController controller) {
+      controller.addListener(() {
+        controllerFilled[controller] = controller.text.isNotEmpty;
+        controllerFilled.forEach((controller, val) {
+          setState(() {
+            validData =
+                controllerFilled.values.every((value) => value == true);
+          });
         });
-      }
-      if ((_emailEditingController.text.isNotEmpty &&
-          _passwordEditingController.text.isNotEmpty)) {
-        setState(() {
-          validData = true;
-        });
-      }
-      if (_emailEditingController.text.isEmpty) {
-        setState(() {
-          validData = false;
-        });
-      }
-    });
-    _passwordEditingController.addListener(() {
-      setState(() {
-        passwordEyeVisible = _passwordEditingController.text.isNotEmpty;
       });
-      if (_passwordValidatingError.isNotEmpty &&
-          _passwordEditingController.text.isNotEmpty) {
-        setState(() {
-          _passwordValidatingError = '';
-        });
-      }
-      if ((_emailEditingController.text.isNotEmpty &&
-          _passwordEditingController.text.isNotEmpty)) {
-        setState(() {
-          validData = true;
-        });
-      }
-      if (_passwordEditingController.text.isEmpty) {
-        setState(() {
-          validData = false;
-        });
-      }
     });
+  }
+
+  @override
+  void dispose() {
+    _controllerList.forEach((TextEditingController controller) {
+      controller.dispose();
+    });
+    super.dispose();
   }
 
   @override
@@ -137,35 +113,39 @@ class _SigninScreenState extends State<SigninScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               UiKitInput(
-                controller: _emailEditingController,
+                controller: _firstNameEditingController,
                 onChanged: (value) => onValidateEmailListener(value),
                 hintText: 'Имя',
                 errorText: _emailValidatingError,
                 keyboardType: TextInputType.emailAddress,
               ),
               UiKitInput(
-                controller: _emailEditingController,
+                controller: _lastNameEditingController,
                 onChanged: (value) => onValidateEmailListener(value),
                 hintText: 'Отчество',
                 errorText: _emailValidatingError,
                 keyboardType: TextInputType.emailAddress,
               ),
               UiKitInput(
-                controller: _emailEditingController,
+                controller: _secondNameEditingController,
                 onChanged: (value) => onValidateEmailListener(value),
                 hintText: 'Фамилия',
                 errorText: _emailValidatingError,
                 keyboardType: TextInputType.emailAddress,
               ),
               UiKitInput(
-                controller: _emailEditingController,
+                controller: _birthDayEditingController,
                 onChanged: (value) => onValidateEmailListener(value),
                 hintText: 'Дата рождения',
                 errorText: _emailValidatingError,
                 keyboardType: TextInputType.datetime,
               ),
               UiKitSelect(
-                onSelected: (_) {},
+                onSelected: (String gender) {
+                  setState(() {
+                    gender = gender;
+                  });
+                },
                 hintText: 'Пол',
                 menuItems: [
                   UiKitSelectItem(label: 'Мужской', value: 'male'),
