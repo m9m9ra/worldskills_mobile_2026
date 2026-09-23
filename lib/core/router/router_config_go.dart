@@ -29,7 +29,7 @@ class RouterConfigGo {
   static bool isInit = false;
 
   static GoRouter get config => GoRouter(
-    initialLocation: kDebugMode ? '/login' : '/login',
+    initialLocation: kDebugMode ? '/home' : '/login',
     redirectLimit: 3,
     navigatorKey: rootNavigatorKey,
     redirect: (context, state) async {

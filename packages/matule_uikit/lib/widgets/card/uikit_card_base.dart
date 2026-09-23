@@ -89,6 +89,7 @@ class UiKitCard extends StatelessWidget {
               height: double.maxFinite,
               padding: EdgeInsets.all(14.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
