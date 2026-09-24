@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:matule_uikit/matule_uikit.dart';
-import 'package:matule_uikit/widgets/search/uikit_search.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
