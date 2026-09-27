@@ -118,7 +118,7 @@ class UiKitCard extends StatelessWidget {
                       UiKitButtonSmall(
                         text: buttonText!,
                         uikitButtonState: uikitButtonState,
-                        onPressed: onCardTap,
+                        onPressed: onPrimaryButtonTap,
                       ),
                     ],
                   ),
@@ -236,7 +236,7 @@ class _BaseCard extends StatelessWidget {
       width: width,
       height: height,
       child: GestureDetector(
-        onTap: () {},
+        onTap: () => onCardTap(),
         child: Card(
           elevation: 1.1,
           color: Colors.white,

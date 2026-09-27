@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:matule_uikit/widgets/colors/brand_colors.dart';
+import 'package:matule_uikit/matule_uikit.dart';
 
 class UiKitSearchInput extends StatefulWidget {
   final TextEditingController? controller;
@@ -40,10 +40,7 @@ class UiKitSearchInputState extends State<UiKitSearchInput> {
       cursorColor: BrandColors.accent, // Цвет курсора (вертикальной палочки)
       decoration: InputDecoration(
         hintText: widget.hintText,
-        hintStyle: const TextStyle(
-          color: Color(0), // Цвет плейсхолдера
-          fontSize: 16,
-        ),
+        hintStyle: BrandTextStyleLight.headlineRegular,
         prefixIcon: const Icon(
           Icons.search,
           color: Color(0xFF7A7A7A), // Цвет лупы

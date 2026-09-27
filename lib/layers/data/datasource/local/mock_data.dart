@@ -41,7 +41,7 @@ abstract class MockData {
       id: "news_1",
       collectionId: "news",
       collectionName: "news",
-      newsImage: "https://unsplash.com", // Красный кроссовок
+      newsImage: "news_0.png", // Красный кроссовок
       created: "2026-09-19",
       updated: "2026-09-19",
     ),
@@ -49,17 +49,19 @@ abstract class MockData {
       id: "news_2",
       collectionId: "news",
       collectionName: "news",
-      newsImage: "https://unsplash.com", // Стильный кроссовок
+      newsImage: "news_1.png", // Стильный кроссовок
       created: "2026-09-20",
       updated: "2026-09-20",
     ),
   ];
 
   static final List<ProductItem> mockCatalog = [
-    ProductItem(id: "p1", title: "Nike Air Max Plus", price: 14900, typeCloses: "Шнурки", type: "Бег"),
-    ProductItem(id: "p2", title: "Adidas Forum Low", price: 11200, typeCloses: "Липучки", type: "Стрит"),
-    ProductItem(id: "p3", title: "Puma RS-X Bold", price: 9800, typeCloses: "Шнурки", type: "Спорт"),
-    ProductItem(id: "p4", title: "Asics Gel-Kayano", price: 16500, typeCloses: "Шнурки", type: "Бег"),
+    ProductItem(id: "p1", title: "Nike Air Max Plus", price: 14900, typeCloses: "Мужчинам", type: "Бег"),
+    ProductItem(id: "p2", title: "Adidas Forum Low", price: 11200, typeCloses: "Женщинам", type: "Стрит"),
+    ProductItem(id: "p3", title: "Puma RS-X Bold", price: 9800, typeCloses: "Мужчинам", type: "Спорт"),
+    ProductItem(id: "p5", title: "Asics Kayano", price: 8500, typeCloses: "Мужчинам", type: "Бег"),
+    ProductItem(id: "p6", title: "Asics Gel", price: 6500, typeCloses: "Женщинам", type: "Бег"),
+    ProductItem(id: "p7", title: "Nike x Asics Gel-Kayano", price: 12200, typeCloses: "Популярное", type: "Бег"),
   ];
 
   static final List<Project> mockProjects = [
