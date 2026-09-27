@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -15,6 +16,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  TextEditingController _searchEditingController = TextEditingController();
+  Stream<List<ProductItem>> _basketStream = BasketUsecase().getBasketStream.asBroadcastStream();
   List<News>? newsList;
   List<ProductItem>? productItemList;
   List<ProductItem>? sortedProductItemList;
@@ -22,10 +25,24 @@ class _HomeScreenState extends State<HomeScreen> {
   Set<String> categoryList = <String>{"Все"};
   int currentCategoryIndex = 0;
 
+  StreamSubscription<List<ProductItem>>? _basketSubscription;
+
   @override
   void initState() {
-    super.initState();
+    super.initState(); 
     _loadServerData();
+    _basketSubscription = _basketStream.listen((List<ProductItem> streamList) {
+      setState(() {
+        basket = streamList; 
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _basketSubscription?.cancel();
+    _searchEditingController.dispose();
+    super.dispose();
   }
 
   void _loadServerData() {
@@ -49,7 +66,6 @@ class _HomeScreenState extends State<HomeScreen> {
         categoryList = {...categoryList, ...productTypeList};
       });
     });
-    
   }
 
   void onCategorySelect(int index) {
@@ -86,12 +102,12 @@ class _HomeScreenState extends State<HomeScreen> {
         basket = basketList;
       });
       debugPrint(basket.toString());
-    }); 
+    });
     // context.go('/product');
   }
 
   Future<void> onDetailsCardTap(ProductItem productItem) async {
-     bool isInCart = basket!.any((item) => item.id == productItem.id);
+    bool isInCart = basket!.any((item) => item.id == productItem.id);
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -158,9 +174,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           UiKitButtonBig(
                             uikitButtonState: isInCart
-                              ? UikitButtonState.secondary
-                              : UikitButtonState.primary,
-                            text: "${isInCart ? "Убрать" : "Добавить"} за ${snapshot.data!.price} ₽",
+                                ? UikitButtonState.secondary
+                                : UikitButtonState.primary,
+                            text:
+                                "${isInCart ? "Убрать" : "Добавить"} за ${snapshot.data!.price} ₽",
                             onPressed: () {
                               onAddToCard(productItem);
                               context.pop();
@@ -184,8 +201,9 @@ class _HomeScreenState extends State<HomeScreen> {
       if (query.isEmpty) {
         sortedProductItemList = productItemList;
       }
-      sortedProductItemList = productItemList!.where((p) => p.title.toLowerCase().contains(query.toLowerCase()))
-        .toList();
+      sortedProductItemList = productItemList!
+          .where((p) => p.title.toLowerCase().contains(query.toLowerCase()))
+          .toList();
     });
   }
 
@@ -198,6 +216,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: UiKitSearchInput(
+              controller: _searchEditingController,
               onChanged: (value) => onSearchInputQuery(value),
               hintText: 'Искать  описания',
             ),

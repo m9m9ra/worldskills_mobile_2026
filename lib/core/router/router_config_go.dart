@@ -9,6 +9,7 @@ import 'package:matule/layers/presentation/screens/auth/password_screen.dart';
 import 'package:matule/layers/presentation/screens/auth/pincode_create_screen.dart';
 import 'package:matule/layers/presentation/screens/auth/pincode_screen.dart';
 import 'package:matule/layers/presentation/screens/auth/signin_screen.dart';
+import 'package:matule/layers/presentation/screens/basket_screen.dart';
 import 'package:matule/layers/presentation/screens/error_screen.dart/error_screen.dart';
 import 'package:matule/layers/presentation/screens/home_screen.dart';
 import 'package:matule/layers/presentation/screens/product_screen.dart';
@@ -30,7 +31,7 @@ class RouterConfigGo {
   static bool isInit = false;
 
   static GoRouter get config => GoRouter(
-    initialLocation: kDebugMode ? '/home' : '/login',
+    initialLocation: kDebugMode ? '/product' : '/login',
     redirectLimit: 3,
     navigatorKey: rootNavigatorKey,
     redirect: (context, state) async {
@@ -168,6 +169,7 @@ class RouterConfigGo {
       ),
 
       // stack screen will be opened over shell branch
+      GoRoute(path: '/basket', builder: (context, state) => BasketScreen())
     ],
   );
 }
