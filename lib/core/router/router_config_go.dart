@@ -9,10 +9,12 @@ import 'package:matule/layers/presentation/screens/auth/password_screen.dart';
 import 'package:matule/layers/presentation/screens/auth/pincode_create_screen.dart';
 import 'package:matule/layers/presentation/screens/auth/pincode_screen.dart';
 import 'package:matule/layers/presentation/screens/auth/signin_screen.dart';
+import 'package:matule/layers/presentation/screens/basket_screen.dart';
 import 'package:matule/layers/presentation/screens/error_screen.dart/error_screen.dart';
 import 'package:matule/layers/presentation/screens/home_screen.dart';
 import 'package:matule/layers/presentation/screens/product_screen.dart';
 import 'package:matule/layers/presentation/screens/profile_screen.dart';
+import 'package:matule/layers/presentation/screens/project_create_screen.dart';
 import 'package:matule/layers/presentation/screens/project_screen.dart';
 import 'package:matule/layers/presentation/screens/root_screen/view/root_screen.dart';
 import 'package:matule_api/models.dart';
@@ -29,7 +31,7 @@ class RouterConfigGo {
   static bool isInit = false;
 
   static GoRouter get config => GoRouter(
-    initialLocation: kDebugMode ? '/login' : '/login',
+    initialLocation: kDebugMode ? '/product' : '/login',
     redirectLimit: 3,
     navigatorKey: rootNavigatorKey,
     redirect: (context, state) async {
@@ -108,7 +110,12 @@ class RouterConfigGo {
               GoRoute(
                 path: '/project',
                 builder: (context, state) => ProjectScreen(),
-                routes: [],
+                routes: [
+                  GoRoute(
+                    path: '/create',
+                    builder: (context, state) => ProjectCreateScreen(),
+                  ),
+                ],
               ),
             ],
           ),
@@ -135,10 +142,8 @@ class RouterConfigGo {
             routes: [
               GoRoute(
                 path: '/password',
-                builder: (context, state) => PasswordScreen(
-                  extraEmail: state.extra as String
-                  
-                  ),
+                builder: (context, state) =>
+                    PasswordScreen(extraEmail: state.extra as String),
                 routes: [],
               ),
             ],
@@ -162,6 +167,9 @@ class RouterConfigGo {
         builder: (context, state) => ErrorScreen(),
         routes: [],
       ),
+
+      // stack screen will be opened over shell branch
+      GoRoute(path: '/basket', builder: (context, state) => BasketScreen())
     ],
   );
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:matule_uikit/matule_uikit.dart';
 import 'package:matule_uikit/widgets/button/uikit_button_small.dart';
 import 'package:matule_uikit/widgets/button/uikit_button_state.dart';
 import 'package:matule_uikit/widgets/colors/brand_colors.dart';
@@ -89,6 +90,7 @@ class UiKitCard extends StatelessWidget {
               height: double.maxFinite,
               padding: EdgeInsets.all(14.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -117,7 +119,7 @@ class UiKitCard extends StatelessWidget {
                       UiKitButtonSmall(
                         text: buttonText!,
                         uikitButtonState: uikitButtonState,
-                        onPressed: onCardTap,
+                        onPressed: onPrimaryButtonTap,
                       ),
                     ],
                   ),
@@ -160,16 +162,17 @@ class UiKitCard extends StatelessWidget {
                     children: [
                       Text(
                         '$price ₽',
-                        style: BrandTextStyleLight.title3SemiBold,
+                        style: BrandTextStyleLight.title3Medium,
                       ),
+                      SizedBox(),
                       Text(
-                        '$price ₽',
-                        style: BrandTextStyleLight.title3SemiBold,
+                        '$count штук',
+                        style: BrandTextStyleLight.textRegular,
                       ),
-                      Text(
-                        '$price ₽',
-                        style: BrandTextStyleLight.title3SemiBold,
-                      ),
+                      UiKitCounter(
+                        // width: 64.0,
+                        onMinusTap: onMinusTap, 
+                        onPlusTap: onPlusTap)
                     ],
                   ),
                 ],
@@ -235,7 +238,7 @@ class _BaseCard extends StatelessWidget {
       width: width,
       height: height,
       child: GestureDetector(
-        onTap: () {},
+        onTap: () => onCardTap(),
         child: Card(
           elevation: 1.1,
           color: Colors.white,

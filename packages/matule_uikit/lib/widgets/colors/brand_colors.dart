@@ -15,7 +15,7 @@ class BrandColors {
 
   static Color get succes => Color.fromRGBO(0, 180, 18, 1);
 
-  static Color get inputBg => Color.fromRGBO(245, 245, 249, 1);
+  static Color get inputBg => Color.fromRGBO(247, 247, 250, 1);
 
   static Color get inputStroke => Color.fromRGBO(230, 230, 230, 1);
 
