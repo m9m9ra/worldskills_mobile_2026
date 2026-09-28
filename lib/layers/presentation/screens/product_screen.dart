@@ -40,7 +40,6 @@ class _ProductScreenState extends State<ProductScreen> {
             basket = streamList;
           });
         });
-    // context.push('/basket');
   }
 
   @override

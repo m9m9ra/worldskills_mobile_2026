@@ -36,6 +36,39 @@ class _BasketScreenState extends State<BasketScreen> {
     super.dispose();
   }
 
+  void onDeleateCardTap(ProductItem product) {
+    _basketUsecase.removeProductFromBasket(product: product);
+  }
+
+  void onOrderBasket() {
+    _basketUsecase.creatOrder();
+    Future.delayed(Duration(seconds: 4)).then((_) {
+      context.go('/home');
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+        snackBarAnimationStyle: AnimationStyle(curve: Curves.easeOut),
+        SnackBar(
+          // margin: EdgeInsets.all(10),
+          backgroundColor: BrandColors.white,
+          behavior: SnackBarBehavior.floating,
+          duration: Duration(seconds: 5),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadiusGeometry.circular(8.0),
+          ),
+          content: Container(
+            width: 375,
+            height: 80.0,
+            alignment: Alignment.topLeft,
+            decoration: BoxDecoration(color: BrandColors.white),
+            child: Text(
+              'Заказ успешно сформирован',
+              style: BrandTextStyleLight.title2ExtraBold,
+            ),
+          ),
+        ),
+      );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,13 +163,15 @@ class _BasketScreenState extends State<BasketScreen> {
                             children: [
                               ...snapshot.data!.map((ProductItem product) {
                                 return Padding(
-                                  padding: EdgeInsetsGeometry.only(bottom: 16.0),
+                                  padding: EdgeInsetsGeometry.only(
+                                    bottom: 16.0,
+                                  ),
                                   child: UiKitCard.cart(
                                     title: product.title,
                                     price: product.price,
                                     width: double.maxFinite,
                                     count: 1,
-                                    onCloseTap: () {},
+                                    onCloseTap: () => onDeleateCardTap(product),
                                     onPlusTap: () {},
                                     onMinusTap: () {},
                                     onCardTap: () {},
@@ -145,12 +180,19 @@ class _BasketScreenState extends State<BasketScreen> {
                               }),
                               Divider(height: 32.0, color: Colors.transparent),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text("Сумма", style: BrandTextStyleLight.title2SemiBold),
-                                  Text("$totalPrice ₽", style: BrandTextStyleLight.title2SemiBold),
+                                  Text(
+                                    "Сумма",
+                                    style: BrandTextStyleLight.title2SemiBold,
+                                  ),
+                                  Text(
+                                    "$totalPrice ₽",
+                                    style: BrandTextStyleLight.title2SemiBold,
+                                  ),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         );
@@ -164,7 +206,10 @@ class _BasketScreenState extends State<BasketScreen> {
               left: 20.0,
               right: 20.0,
               bottom: 32.0,
-              child: UiKitButtonBig(text: 'Перейти к оформлению заказа', onPressed: () => ()),
+              child: UiKitButtonBig(
+                text: 'Перейти к оформлению заказа',
+                onPressed: () => onOrderBasket(),
+              ),
             ),
           ],
         ),

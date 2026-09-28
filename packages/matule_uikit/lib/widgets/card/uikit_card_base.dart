@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:matule_uikit/matule_uikit.dart';
 import 'package:matule_uikit/widgets/button/uikit_button_small.dart';
 import 'package:matule_uikit/widgets/button/uikit_button_state.dart';
 import 'package:matule_uikit/widgets/colors/brand_colors.dart';
@@ -161,16 +162,17 @@ class UiKitCard extends StatelessWidget {
                     children: [
                       Text(
                         '$price ₽',
-                        style: BrandTextStyleLight.title3SemiBold,
+                        style: BrandTextStyleLight.title3Medium,
                       ),
+                      SizedBox(),
                       Text(
-                        '$price ₽',
-                        style: BrandTextStyleLight.title3SemiBold,
+                        '$count штук',
+                        style: BrandTextStyleLight.textRegular,
                       ),
-                      Text(
-                        '$price ₽',
-                        style: BrandTextStyleLight.title3SemiBold,
-                      ),
+                      UiKitCounter(
+                        // width: 64.0,
+                        onMinusTap: onMinusTap, 
+                        onPlusTap: onPlusTap)
                     ],
                   ),
                 ],

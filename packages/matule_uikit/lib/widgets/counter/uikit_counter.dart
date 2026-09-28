@@ -8,7 +8,7 @@ class UiKitCounter extends StatelessWidget {
   ///
   UiKitCounter({
     super.key,
-    this.width = 64.0,
+    this.width = 98.0,
     required this.onMinusTap,
     required this.onPlusTap,
   });
@@ -20,7 +20,8 @@ class UiKitCounter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // width: width,
+      width: width,
+      height: 32.0,
       decoration: BoxDecoration(
         color: BrandColors.inputBg,
         borderRadius: BorderRadius.circular(8),
@@ -29,26 +30,23 @@ class UiKitCounter extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          // Кнопка Уменьшить (Минус)
           IconButton(
             icon: Icon(
               Icons.remove,
               size: 20.0,
               color: BrandColors.placeholder,
             ),
+            style: IconButton.styleFrom(padding: EdgeInsets.all(0)),
             padding: EdgeInsets.all(0),
             onPressed: onMinusTap(),
             color: BrandColors.black,
             tooltip: 'Уменьшить',
           ),
-          Container(
-            width: 1.0,
-            height: 18.0,
-            color: BrandColors.inputStroke,
-          ),
+          Container(width: 1.0, height: 18.0, color: BrandColors.inputStroke),
           // Кнопка Увеличить (Плюс)
           IconButton(
             icon: Icon(Icons.add, size: 20.0, color: BrandColors.placeholder),
+            style: IconButton.styleFrom(padding: EdgeInsets.all(0)),
             padding: EdgeInsets.all(0),
             onPressed: onPlusTap(),
             tooltip: 'Увеличить',

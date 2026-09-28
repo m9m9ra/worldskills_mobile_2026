@@ -39,5 +39,8 @@ class BasketUsecase {
     return _productList;
   }
 
-  Future<void> creatOrder() async {}
+  Future<void> creatOrder() async {
+    _productList = [];
+    _streamController.add(_productList);
+  }
 }
