@@ -1,16 +1,13 @@
 import 'dart:async';
-import 'package:matule/layers/data/datasource/network/api_client.dart';
-import 'package:matule/layers/domain/usecases/api_usecase.dart';
-import 'package:matule/layers/domain/usecases/auth_usecase.dart';
 import 'package:matule_api/matule_api.dart';
 
 class BasketUsecase {
   BasketUsecase._();
-  ApiUsecase _apiUsecase = ApiUsecase(apiClient);
-  AuthUsecase _authUsecase = AuthUsecase();
+  // ApiUsecase _apiUsecase = ApiUsecase(apiClient);
+  // AuthUsecase _authUsecase = AuthUsecase();
   List<ProductItem> _productList = [];
 
-  StreamController<List<ProductItem>> _streamController =
+  final StreamController<List<ProductItem>> _streamController =
       StreamController<List<ProductItem>>.broadcast();
   Stream<List<ProductItem>> get getBasketStream =>
       _streamController.stream.asBroadcastStream();
