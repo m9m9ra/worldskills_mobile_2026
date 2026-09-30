@@ -19,6 +19,7 @@ class App extends StatelessWidget {
     return MaterialApp.router(
       title: 'Matule 2026',
       debugShowCheckedModeBanner: false,
+      debugShowMaterialGrid: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: BrandColors.accent),
       ),
