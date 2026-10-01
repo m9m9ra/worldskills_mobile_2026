@@ -169,7 +169,7 @@ class RouterConfigGo {
       ),
 
       // stack screen will be opened over shell branch
-      GoRoute(path: '/basket', builder: (context, state) => BasketScreen())
+      GoRoute(path: '/basket', builder: (context, state) => BasketScreen()),
     ],
   );
 }
