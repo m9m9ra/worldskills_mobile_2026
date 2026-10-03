@@ -66,14 +66,18 @@
 
 ## Презентация
 
+<div>
 <img height="375px" src="./assets/publication/screens/login.png"/>
 <img height="375px" src="./assets/publication/screens/createpin.png"/>
 <img height="375px" src="./assets/publication/screens/home.png"/>
 <img height="375px" src="./assets/publication/screens/product.png"/>
+</div>
+<div>
 <img height="375px" src="./assets/publication/screens/basket.png"/>
 <img height="375px" src="./assets/publication/screens/project.png"/>
 <img height="375px" src="./assets/publication/screens/create.png"/>
 <img height="375px" src="./assets/publication/screens/profile.png"/>
+</div>
 
 ## Документация
 
