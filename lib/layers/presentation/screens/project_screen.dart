@@ -18,7 +18,6 @@ class ProjectScreen extends StatefulWidget {
 }
 
 class _ProjectScreenState extends State<ProjectScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -75,6 +74,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                       );
                     }
                     return Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         ...snapshot.data!.map((Project project) {
                           return UiKitCard.project(

@@ -56,6 +56,37 @@
    flutter run
    ```
 
+### Демо-версия
+
+Для быстрой проверки приложения без локальной сборки вы можете установить готовую сборку на Android:
+
+👉 **[Скачать актуальный .APK файл](ССЫЛКА_НА_ВАШ_ФАЙЛ_В_RELEASES)**
+
+[![Android](https://img.shields.io/badge/Android-%233DDC84.svg?style=for-the-badge&logo=android&logoColor=white)](https://m9m9ra.github.io)
+
+## Презентация
+
+<img height="375px" src="./assets/publication/screens/login.png"/>
+<img height="375px" src="./assets/publication/screens/createpin.png"/>
+<img height="375px" src="./assets/publication/screens/home.png"/>
+<img height="375px" src="./assets/publication/screens/product.png"/>
+<img height="375px" src="./assets/publication/screens/basket.png"/>
+<img height="375px" src="./assets/publication/screens/project.png"/>
+<img height="375px" src="./assets/publication/screens/create.png"/>
+<img height="375px" src="./assets/publication/screens/profile.png"/>
+
+## Документация
+
+### Конкурсное задание
+- Можете ознакомится с конкурсной документацией по пути
+  ```bash
+  ./assets/publication/mobile-dev-ws-dock.pdf
+  ```
+### Архитектурные решения
+* **Архитектура:** Clean Architecture (разделение на Data, Domain, Presentation слои).
+* **State Management:** *[Provider / Native Stream, BroadCastStream]*.
+* **Навигация:** *[GoRouter]*.
+
 ## Разработка
 
 ### Настройка окружения
@@ -78,52 +109,45 @@
 /lib
 │
 ├── core
-│   ├── brand               // Цветовая палитра, константы
-│   ├── helpers             // Вспомогательные функции и утилиты
-│   ├── router              // Схема навигации
-│   └── services            // Сервисы, такие как метрика, уведомления, реклама
+│   ├── config             // Конфиги
+│   └── router             // Схема навигации
 │
-└── layers                  // Весь бизнес и презентационный слой размещен здесь
+└── layers                 // Весь бизнес и презентационный слой размещен здесь
     ├── data
-    │   ├── local
-    │   │   └── sqflite_source.dart
-    │   └── remote
-    │       └── api.dart
+    │   ├── datasource
+    │   │   ├── local
+    │   │   └── network
+    │   └── models
     │
     ├── domain
-    │   ├── entities
-    │   │   ├── user.dart
-    │   │   ├── activity.dart
-    │   │   └── ... (другие бизнес-объекты)
-    │   ├── repositories (интерфейсы репозиториев)
-    │   │   ├── user_repository.dart
-    │   │   ├── activity_repository.dart
+    │   ├── models
+    │   │   └── (бизнес-объекты)
+    │   ├── provider 
+    │   │   ├── (провайдеры точек входа)
+    │   │   └── ...
+    │   ├── repositories 
+    │   │   ├── (интерфейсы репозиториев)
     │   │   └── ...
     │   └── usecases
-    │       ├── activity_usecase.dart
-    │       ├── activity_usecase.g.dart
+    │       ├── api_usecase.dart
+    │       ├── auth_usecase.g.dart
     │       └── ... (другие use case)
     │
     └── presentation
         ├── screens
         │   ├── auth
-        │   ├── main
-        │   │   ├── activity_screen
-        │   │   │   ├── tab_bar
-        │   │   │   ├── tabs
-        │   │   │   └── view
-        │   │   ├── details_screen
-        │   │   ├── home_screen
-        │   │   ├── profile_screen
-        │   │   └── ... (дополнительные экраны)
-        │   ├── onboarding
+        │   ├── root_screen
+        │   │   ├── widgets
+        │   │   └── view
+        │   ├── product_screen
+        │   ├── home_screen
+        │   ├── profile_screen
+        │   └── ... (дополнительные экраны)
         │   └── other
         │
         └── shared
             ├── store
-            │   ├── modules
-            │   └── root_store.dart
-            └── ui (компоненты общего назначения)
+            └── ui
        
 └── main.dart
 

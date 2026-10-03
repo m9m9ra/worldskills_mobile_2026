@@ -29,7 +29,7 @@ class _UKkitBottomBarState extends State<UiKitBottomBar> {
           ? widget.currentIndex
           : throw Exception('current index > items.lenght'),
       type: BottomNavigationBarType.fixed,
-      elevation: 1,
+      elevation: 0,
       enableFeedback: false,
       showSelectedLabels: true,
       showUnselectedLabels: true,

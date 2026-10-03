@@ -36,6 +36,7 @@ class _RootScreenState extends State<RootScreen> {
         bottomNavigationBar: Container(
           height: Platform.isAndroid ? 80 : null,
           width: double.maxFinite,
+          color: Colors.transparent,
           alignment: Alignment.center,
           child: UiKitBottomBar(
             currentIndex: widget.statefulNavigationShell.currentIndex,
