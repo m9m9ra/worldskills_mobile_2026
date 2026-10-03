@@ -60,9 +60,9 @@
 
 Для быстрой проверки приложения без локальной сборки вы можете установить готовую сборку на Android:
 
-👉 **[Скачать актуальный .APK файл](ССЫЛКА_НА_ВАШ_ФАЙЛ_В_RELEASES)**
+👉 **[Скачать актуальный .APK файл](https://github.com/m9m9ra/worldskills_mobile_2026/releases)**
 
-[![Android](https://img.shields.io/badge/Android-%233DDC84.svg?style=for-the-badge&logo=android&logoColor=white)](https://m9m9ra.github.io)
+[![Android](https://img.shields.io/badge/Android-%233DDC84.svg?style=for-the-badge&logo=android&logoColor=white)](https://github.com/m9m9ra/worldskills_mobile_2026/releases)
 
 ## Презентация
 
